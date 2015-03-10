@@ -3,7 +3,7 @@ files=dir('data_*');
 for file=files' 
 	infile_name=file.name
 	load(infile_name);
-	dlmwrite('sizes.dat', size(data), 'delimiter', '\t');
+	dlmwrite('sizes.txt', size(data), 'delimiter', '\t');
 	
 	tstep=str2num(infile_name(6:(length(infile_name)-3)))
 	disp('Infile ready');
@@ -31,7 +31,7 @@ for file=files'
 		rand_ind=horzcat(ind0,randperm(max(max(grains))));
 		grains_rand=reshape(rand_ind(grains+1),length(grains),length(grains));
 		dlmwrite(grains_filename,grains_rand,'delimiter','\t');
-		dlmwrite('tsteps.dat', int2str(tstep), 'delimiter', '','-append');
+		dlmwrite('tsteps.txt', int2str(tstep), 'delimiter', '','-append');
 
 		grain_vec=grains(:)';
 % 2: calculate the areas of the grains:

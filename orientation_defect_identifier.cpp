@@ -18,7 +18,7 @@ using namespace std;
 int tsteps_reader()
 {
 	ifstream file;
-	file.open("tsteps.dat");
+	file.open("tsteps.txt");
 	int ntsteps=-1;
 	int tstep;
 	while ( !file.eof() ){
@@ -32,7 +32,7 @@ int tsteps_reader()
 void tsteps_reader(int *a, int l)
 {
 	ifstream file;
-	file.open("tsteps.dat");
+	file.open("tsteps.txt");
 
 	for (int i=0;i<l;i++) file>>a[i];
 	file.close();
@@ -41,7 +41,7 @@ void tsteps_reader(int *a, int l)
 void read_sizes(int &a,int &b)
 {
 	ifstream file;
-	file.open("sizes.dat");
+	file.open("sizes.txt");
 	file>>a;file>>b;
 	file.close();
 }

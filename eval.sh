@@ -6,11 +6,23 @@ python2.7 proc.py
 /usr/local/MATLAB/R2014a/bin/matlab   -nodesktop -nosplash -r "watershed_script; exit"; reset
 g++ orientation_defect_identifier.cpp -ltiff
 ./a.out
-rm *.mat *.txt
 
+
+mkdir density
 for i in radius_density*
 do
 	#echo $i
 	a=`echo "${i//[!0-9]}"`
 	gnuplot -e "file='${i}'; number='${a}'"  fit_and_plot_density_png.plg
+	mv $i density
 done
+
+mkdir defect
+for i in ori_def*
+do
+	mv $i defect
+done
+
+rm *.mat *.txt
+rm a.out
+rm fit*
