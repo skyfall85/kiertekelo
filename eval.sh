@@ -11,9 +11,8 @@ g++ orientation_defect_identifier.cpp -ltiff
 mkdir density
 for i in radius_density*
 do
-	#echo $i
 	a=`echo "${i//[!0-9]}"`
-	gnuplot -e "file='${i}'; number='${a}'"  fit_and_plot_density_png.plg
+	gnuplot -e "file='${i}'; number='${a}'"  plot_and_fit_density_png.plg
 	mv $i density
 done
 

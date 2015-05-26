@@ -30,6 +30,10 @@ for file=files'
 		ind0=0;
 		rand_ind=horzcat(ind0,randperm(max(max(grains))));
 		grains_rand=reshape(rand_ind(grains+1),length(grains),length(grains));
+		grains_rgb = label2rgb(grains_rand,'jet',[.5 .5 .5]);
+		imshow(grains_rgb),title('Az algoritmus altal beazonositott szemcsek')
+		plot_filename=strcat('ori_def_Identified_grains1_',int2str(tstep),'t.pdf');
+		print('-dpdf','-r200',plot_filename);
 		dlmwrite(grains_filename,grains_rand,'delimiter','\t');
 		dlmwrite('tsteps.txt', int2str(tstep), 'delimiter', '','-append');
 

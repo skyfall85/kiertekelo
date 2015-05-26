@@ -10,7 +10,8 @@ set ytics 0.2 font ",14"
 tit=sprintf("Grain radius distribution \n after %s timestep",number)
 set title tit offset 0,1  font ",25"
 set style fill solid 1.00 border 0
-p [0.0:3.5][:1.1] file w boxes linecolor rgb "#3366FF" t "" , f(x) lw 5 lc rgb "red" t "" 
+max_val=GPVAL_DATA_Y_MAX
+p [0.0:3.5][:1.2*max_val] file w boxes linecolor rgb "#3366FF" t "" , f(x) lw 5 lc rgb "red" t "" 
 out_fname=sprintf("density/maggrad_rad_dist_%s_phys_nucl.png",number)
 set terminal pngcairo size 768,512
 set out out_fname

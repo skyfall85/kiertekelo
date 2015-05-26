@@ -15,7 +15,7 @@ for row_ind in range(0,plen):
 	xsize=int(np.sqrt(len(data)))
 	ysize=xsize
 	data=data.reshape((xsize,ysize))
-	tstep=pf_filename[3:(len(pf_filename)-5)]
+	tstep=pf_filename[3:(len(pf_filename)-4)]
 	out_fname='phase_'+str(tstep)+'.txt'
 	np.savetxt(out_fname,data)
 	out_fname='data_'+str(tstep)+'.mat'
@@ -32,7 +32,7 @@ for row_ind in range(0,plen):
 	xsize=int(np.sqrt(len(data)))
 	ysize=xsize
 	data=data.reshape((xsize,ysize))
-	tstep=of_filename[3:(len(of_filename)-5)]
+	tstep=of_filename[3:(len(of_filename)-4)]
 	out_fname='orientation_'+str(tstep)+'.txt'
 	np.savetxt(out_fname,data)
 

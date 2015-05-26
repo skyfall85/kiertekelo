@@ -94,8 +94,9 @@ int main()
 
     ofstream out_defnum;
     char out_defnum_file[50];
-    sprintf(out_defnum_file,"number_of_def.dat");
+    sprintf(out_defnum_file,"ori_defect_number.dat");
     out_defnum.open(out_defnum_file);
+    out_defnum<<"tsteps \t num_of_right \t num_of_left \t num_of_ori_def_trijunction \t num_of_ori_def_at_GB"<<endl;
 
 
     f(t,0,length)
@@ -103,7 +104,7 @@ int main()
 	// read in data file:
 	ifstream in;
 	char filename[50];
-	sprintf(filename,"orientation_%d.txt",tsteps[t]);
+	sprintf(filename,"orientation_%07d.txt",tsteps[t]);
 	in.open(filename);
 	cout<<filename<<endl;
 	cout<<"Read in starts"<<endl;
@@ -199,23 +200,23 @@ int main()
 			}
 			// if (sum_of_grad!=0) cout<<"i:j:="<<i<<":"<<j<<" - sum_of_grad:"<<sum_of_grad<<endl;
 			sum_of_grad!=0 ? index=int(sum_of_grad/fabs(sum_of_grad))+1 : index=1;
-			myRGB[i][j][0]=0.0;
-			myRGB[i][j][1]=0.0;
-			myRGB[i][j][2]=0.0;
+			myRGB[j][i][0]=0.0;
+			myRGB[j][i][1]=0.0;
+			myRGB[j][i][2]=0.0;
 	
-			myRGB[i][j][index]=255.0;
+			myRGB[j][i][index]=255.0;
 
 			if (sum_of_grad!=0 && trijunction_or_boundary==0){
-							myRGB[i][j][0]=255.0;
-							myRGB[i][j][1]=255.0;
-							myRGB[i][j][2]=0.0;
+							myRGB[j][i][0]=255.0;
+							myRGB[j][i][1]=255.0;
+							myRGB[j][i][2]=0.0;
 			}
 				
 
 			}
 		}	
     cout<<"num_of_ori_def_at_GB="<<num_of_ori_def_at_GB<<"\t num_of_ori_def_trijunction="<<num_of_ori_def_trijunction<<endl;  
-    cout<<"Percentage of defects at GB-s: "<<100*num_of_ori_def_at_GB/num_of_ori_def_trijunction<<endl;
+    cout<<"Percentage of defects at GB-s: "<<100*num_of_ori_def_at_GB/(num_of_ori_def_trijunction+num_of_ori_def_at_GB)<<endl;
 	cout<<"total_sum: "<<total_sum<<endl;
 	// **********write out the image********************
 	char filename_out[50];
@@ -253,7 +254,7 @@ int main()
 	out.open(filename_out2);
 	f(i,0,L){f(j,0,L){out<<rotation[i][j]<<"\t";}out<<endl;}
 
-	out_defnum<<tsteps[t]<<"\t"<<num_of_right<<"\t"<<num_of_left<<endl;
+	out_defnum<<tsteps[t]<<"\t"<<num_of_right<<"\t"<<num_of_left<<"\t"<<num_of_ori_def_trijunction<<"\t"<<num_of_ori_def_at_GB<<endl;
 
 	} 
 	out_defnum.close();
