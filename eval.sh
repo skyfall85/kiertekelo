@@ -9,6 +9,8 @@ g++ orientation_defect_identifier.cpp -ltiff
 
 
 mkdir density
+mv grain_number.dat density
+
 for i in radius_density*
 do
 	a=`echo "${i//[!0-9]}"`

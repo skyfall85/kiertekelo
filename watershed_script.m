@@ -43,6 +43,12 @@ for file=files'
 		binranges=1:max_id;
 		grain_area=histc(double(grain_vec),binranges);
 		grain_area=grain_area(grain_area>300);
+		myformat='%5d %5d\n';
+		fid=fopen('grain_number.dat','a');
+		grain_number_vector(1)=tstep;
+		grain_number_vector(2)=length(grain_area);
+		fprintf(fid,myformat,grain_number_vector);
+		fclose(fid);
 
 
 % grain_area contains the area of the individual grains:
