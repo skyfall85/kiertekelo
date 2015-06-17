@@ -19,13 +19,17 @@ for file=files'
 		data2=horzcat(data(:,lind:size_x),data,data(:,1:100));
 		data3=horzcat(data(1:100,lind:size_x),data(1:100,:),data(1:100,1:100));
 
-		data=vertcat(data1,data2,data3);
+		data=vertcat(data1,data2,data3);		
 
 		grains=watershed(1.0-data);
 
 % grains=grains(size_x+1:2*size_x,size_x+1:2*size_x);
  		grains=grains(101:(size_x+100),101:(size_x+100));
  		grains_filename=strcat('grains_data_',int2str(tstep),'.txt');
+
+ 		% data=reshape(grains,[size_x*size_y,1]);
+ 		filename=strcat('grain_size_',int2str(tstep),'.dat');
+		dlmwrite(filename, grains, 'delimiter', '\n','-append');
 
 		ind0=0;
 		rand_ind=horzcat(ind0,randperm(max(max(grains))));
